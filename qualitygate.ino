@@ -11,7 +11,7 @@ const char* ssid = "YOUR_SSID"; // 2.4Ghz only
 const char* password = "WIFI_PASSWORD";
 const char* githubToken = "YOUR_TOKEN";
 
-const char* owner = "tassilo-posegga"; // github owner
+const char* owner = "poseggaQM"; // github owner
 const char* repo  = "QualityGate"; // github repo
 
 #define NEOPIXEL_PIN  18
