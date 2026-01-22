@@ -1,0 +1,32 @@
+name: QualityGate Status
+on:
+  workflow_dispatch:
+    inputs:
+      state:
+        description: 'CI Status'
+        required: true
+        type: choice
+        options:
+        - success
+        - failure
+        - pending
+        - error
+jobs:
+  status:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set Status
+        env:
+          PAT_TOKEN: ${{ secrets.GH_PAT }}
+          STATE: ${{ github.event.inputs.state }}
+        run: |
+          SHA=$(curl -s -H "Authorization: Bearer $PAT_TOKEN" \
+            https://api.github.com/repos/tassilo-posegga/QualityGate/commits/main | \
+            grep -Po '"sha"\s*:\s*"[^"]+"' | head -1 | cut -d'"' -f4)
+          echo "SHA: $SHA"
+          echo "State: $STATE"
+          curl -X POST -s -w "%{http_code}" \
+            -H "Authorization: Bearer $PAT_TOKEN" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/tassilo-posegga/QualityGate/statuses/$SHA" \
+            -d "{\"state\":\"$STATE\",\"context\":\"QualityGate\",\"description\":\"Totem\"}"
