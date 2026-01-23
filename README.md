@@ -16,7 +16,7 @@ This project was built as a **hackathon demo**, optimized for fast setup, strong
 
 ## ✨ Demo Video / Photos
 
-*(Add pictures or a short video here — judges love this)*
+https://drive.google.com/file/d/1cwE_JaRTjXnJE8KFs2QpC7TMxyx5t9Rr/view?usp=drive_link
 
 ---
 
